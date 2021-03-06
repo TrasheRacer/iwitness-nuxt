@@ -1,4 +1,4 @@
-# Readme
+# Frontend readme
 
 ## Project setup
 

@@ -40,7 +40,7 @@ export default {
   ],
 
   serverMiddleware: {
-    '/api': '~/../backend/api',
+    '/api': '~/endpoints',
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

@@ -1,33 +1,27 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">iWitness server</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
-      <div class="pong">
-        <b-button :variant="apiVariant"
-          >API connection: {{ apiStatus }}</b-button
-        >
-      </div>
-    </div>
-  </div>
+  <b-container id="container" fluid>
+    <b-row id="header" class="align-bottom">
+      <b-col>
+        <div>
+          <strong>Endpoint connection status:</strong>
+          <b-button :variant="ping.class">{{ ping.response }}</b-button>
+        </div>
+        <div>Uses <code>GET</code> request to <code>/ping</code> endpoint</div>
+      </b-col>
+      <b-col></b-col>
+      <b-col class="text-right">
+        <div>
+          <strong>Registered user count: {{ users.length }}</strong>
+        </div>
+      </b-col>
+    </b-row>
+    <b-row class="text-center">
+      <b-col>
+        <Logo />
+        <h1 id="title">iWitness server</h1>
+      </b-col>
+    </b-row>
+  </b-container>
 </template>
 
 <script lang="ts">
@@ -35,30 +29,34 @@ import Vue from 'vue'
 
 export default Vue.extend({
   async asyncData({ $axios }) {
-    return await $axios
+    const ping = $axios
       .$get('api/ping')
       .then((res) => {
-        if (res === 'pong') return { apiStatus: 'alive', apiVariant: 'success' }
-        else return { apiStatus: 'dead', apiVariant: 'warning' }
+        if (res === 'pong') return { response: 'ALIVE', class: 'success' }
+        else return { response: 'UNKNOWN', class: 'warning' }
       })
       .catch(() => {
-        return { apiStatus: 'error', apiVariant: 'danger' }
+        return { response: 'ERROR', class: 'danger' }
       })
+    const users = $axios.$get('api/users').then((res) => {
+      return res.map((u) => u._id)
+    })
+    return { ping: await ping, users: await users }
   },
 })
 </script>
 
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+#header {
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
-.title {
+strong {
+  font-size: x-large;
+}
+
+#title {
   font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
@@ -66,22 +64,5 @@ export default Vue.extend({
   font-size: 100px;
   color: #35495e;
   letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-
-.pong {
-  padding-top: 30px;
-  font-family: monospace;
 }
 </style>

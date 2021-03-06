@@ -1,11 +1,11 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'iwitness-frontend',
+    title: 'iwitness-server',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'work-in-progress' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
@@ -41,6 +41,7 @@ export default {
 
   serverMiddleware: {
     '/api': '~/endpoints',
+    // '/db': '~/database',
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

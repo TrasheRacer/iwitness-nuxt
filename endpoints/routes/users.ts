@@ -1,23 +1,17 @@
-import { Router } from "express";
+import { Router } from 'express'
 
-const router = Router();
+const router = Router()
+const users = [{ name: 'Alexandre' }, { name: 'Pooya' }, { name: 'Sébastien' }]
 
-// Mock Users
-const users = [{ name: "Alexandre" }, { name: "Pooya" }, { name: "Sébastien" }];
+export const GET_USERS = router.get('/users', function (_req, res, _next) {
+  res.json(users)
+})
 
-/* GET users listing. */
-router.get("/users", function (req, res, next) {
-  res.json(users);
-});
-
-/* GET user by ID. */
-router.get("/users/:id", function (req, res, next) {
-  const id = parseInt(req.params.id);
+export const GET_USER = router.get('/users/:id', function (req, res, _next) {
+  const id = parseInt(req.params.id)
   if (id >= 0 && id < users.length) {
-    res.json(users[id]);
+    res.json(users[id])
   } else {
-    res.sendStatus(404);
+    res.sendStatus(404)
   }
-});
-
-module.exports = router;
+})

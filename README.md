@@ -1,4 +1,4 @@
-# iwitness-frontend
+# iWitness server
 
 ## Build Setup
 

@@ -1,23 +1,20 @@
-import { Router } from 'express'
+import express from 'express'
+import { GET_USER } from './routes/users'
+import { GET_PONG } from './routes/ping'
 
-const router = Router()
+const app = express() // create express instance
 
-// Mock Users
-const users = [{ name: 'Alexandre' }, { name: 'Pooya' }, { name: 'Sébastien' }]
+app.use(GET_USER)
+app.use(GET_PONG)
 
-/* GET users listing. */
-router.get('/users', function (_req, res, _next) {
-  res.json(users)
-})
+// Export express app
+module.exports = app
 
-/* GET user by ID. */
-router.get('/users/:id', function (req, res, _next) {
-  const id = parseInt(req.params.id)
-  if (id >= 0 && id < users.length) {
-    res.json(users[id])
-  } else {
-    res.sendStatus(404)
-  }
-})
-
-module.exports = router
+// Start standalone server if directly running
+if (require.main === module) {
+  const port = process.env.PORT || 3001
+  app.listen(port, () => {
+    // eslint-disable-next-line no-console
+    console.log(`API server listening on port ${port}`)
+  })
+}

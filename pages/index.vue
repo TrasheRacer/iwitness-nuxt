@@ -2,7 +2,7 @@
   <div class="container">
     <div>
       <Logo />
-      <h1 class="title">iwitness-frontend</h1>
+      <h1 class="title">iWitness server</h1>
       <div class="links">
         <a
           href="https://nuxtjs.org/"
@@ -21,6 +21,11 @@
           GitHub
         </a>
       </div>
+      <div class="pong">
+        <b-button :variant="apiVariant"
+          >API connection: {{ apiStatus }}</b-button
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -28,7 +33,19 @@
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+export default Vue.extend({
+  async asyncData({ $axios }) {
+    return await $axios
+      .$get('api/ping')
+      .then((res) => {
+        if (res === 'pong') return { apiStatus: 'alive', apiVariant: 'success' }
+        else return { apiStatus: 'dead', apiVariant: 'warning' }
+      })
+      .catch(() => {
+        return { apiStatus: 'error', apiVariant: 'danger' }
+      })
+  },
+})
 </script>
 
 <style>
@@ -61,5 +78,10 @@ export default Vue.extend({})
 
 .links {
   padding-top: 15px;
+}
+
+.pong {
+  padding-top: 30px;
+  font-family: monospace;
 }
 </style>

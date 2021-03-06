@@ -1,6 +1,6 @@
-# Project iWitness
+# Milestones
 
-## Milestone 1: ready-to-demo MVP
+## Minimum viable product
 
 - Uses GitHub repo as remote
 - Depends on yarn with the global package @vue/cli-service
@@ -61,10 +61,7 @@ For example:
 - `user-register-success`
 - `user-register-error`
 
-#### [2] Displays status of server in home page
-
-- Create a `ping` endpoint in Express
-- Hit it from the home page then show the result
+#### [2] ~~Displays status of server in home page~~
 
 #### [2] Displays total number of users in home page
 

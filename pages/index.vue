@@ -5,9 +5,6 @@
         <b-button variant="success" @click="pingServer">PING SERVER</b-button>
         <h4>RESPONSES</h4>
         {{ pongs }}
-        <!-- <div v-for="pong in pongs" :key="pong">
-          <p>{{ pong }}</p>
-        </div> -->
       </b-col>
       <b-col>
         <NuxtLink to="/user">Create a new user account</NuxtLink>
@@ -60,7 +57,7 @@ export default Vue.extend({
           this.pongs.push(res)
         })
         .catch((err) => {
-          console.error(`$get('http://192.168.178.31:3000/api/ping'): ${err}`)
+          console.error(`$get('http://192.168.178.31:3000/api/ping')`, err)
         })
     },
   },

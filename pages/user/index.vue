@@ -2,14 +2,14 @@
   <b-container id="container" fluid>
     <b-row id="header" class="align-bottom">
       <b-col class="text-center">
-        <NuxtLink to="/">Home page</NuxtLink>
+        <NuxtLink to="/">HOME_PAGE</NuxtLink>
       </b-col>
     </b-row>
     <b-row class="text-center">
       <b-col>
         <Logo />
-        <h1 id="title">iWitness server</h1>
-        <h2>Create a new user account</h2>
+        <h1 id="title">IWITNESS_SERVER</h1>
+        <h2>CREATE_ACCOUNT</h2>
       </b-col>
     </b-row>
   </b-container>

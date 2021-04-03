@@ -2,15 +2,18 @@
   <b-container id="container" fluid>
     <b-row id="header" class="align-bottom">
       <b-col>
-        <b-button variant="success" @click="pingServer">PING SERVER</b-button>
-        <h4>RESPONSES</h4>
+        <b-button variant="success" @click="pingServer">PING_API</b-button>
+        <br />
+        <br />
+        <p>RESPONSE_DATA</p>
         {{ pongs }}
       </b-col>
       <b-col>
-        <NuxtLink to="/user">Create a new user account</NuxtLink>
+        <NuxtLink to="/user">CREATE_ACCOUNT</NuxtLink>
       </b-col>
-      <b-col></b-col>
       <b-col class="text-left">
+        <strong><p>USERS_ENDPOINT</p></strong>
+        <p>RESPONSE_DATA</p>
         <div>
           <pre>
             <code>
@@ -31,7 +34,7 @@
     <b-row class="text-center">
       <b-col>
         <Logo />
-        <h1 id="title">iWitness server</h1>
+        <h1 id="title">IWITNESS_SERVER</h1>
       </b-col>
     </b-row>
   </b-container>

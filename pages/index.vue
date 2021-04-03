@@ -2,16 +2,32 @@
   <b-container id="container" fluid>
     <b-row id="header" class="align-bottom">
       <b-col>
-        <div>
-          <strong>Endpoint connection status:</strong>
-          <b-button :variant="ping.class">{{ ping.response }}</b-button>
-        </div>
-        <div>Uses <code>GET</code> request to <code>/ping</code> endpoint</div>
+        <b-button variant="success" @click="pingServer">PING SERVER</b-button>
+        <h4>RESPONSES</h4>
+        {{ pongs }}
+        <!-- <div v-for="pong in pongs" :key="pong">
+          <p>{{ pong }}</p>
+        </div> -->
+      </b-col>
+      <b-col>
+        <NuxtLink to="/user">Create a new user account</NuxtLink>
       </b-col>
       <b-col></b-col>
-      <b-col class="text-right">
+      <b-col class="text-left">
         <div>
-          <strong>Registered user count: {{ users.length }}</strong>
+          <pre>
+            <code>
+            { users:
+             { count: {{ users.length }}
+               users: [
+                {{ users[0]._id }}: {{ users[0].email }},
+                {{ users[1]._id }}: {{ users[1].email }},
+                ..
+                ]
+             }
+            }
+            </code>
+          </pre>
         </div>
       </b-col>
     </b-row>
@@ -28,20 +44,25 @@
 import Vue from 'vue'
 
 export default Vue.extend({
-  async asyncData({ $axios }) {
-    const ping = $axios
-      .$get('api/ping')
-      .then((res) => {
-        if (res === 'pong') return { response: 'ALIVE', class: 'success' }
-        else return { response: 'UNKNOWN', class: 'warning' }
-      })
-      .catch(() => {
-        return { response: 'ERROR', class: 'danger' }
-      })
-    const users = $axios.$get('api/users').then((res) => {
-      return res.map((u) => u._id)
-    })
-    return { ping: await ping, users: await users }
+  async asyncData({ $http }) {
+    const users = $http.$get('http://192.168.178.31:3000/api/users')
+    return { users: await users }
+  },
+  data() {
+    return { pongs: [] }
+  },
+  methods: {
+    async pingServer() {
+      console.debug('pingServer()')
+      await this.$http
+        .$get('http://192.168.178.31:3000/api/ping')
+        .then((res: any) => {
+          this.pongs.push(res)
+        })
+        .catch((err) => {
+          console.error(`$get('http://192.168.178.31:3000/api/ping'): ${err}`)
+        })
+    },
   },
 })
 </script>

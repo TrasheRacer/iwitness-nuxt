@@ -23,11 +23,12 @@
   },
   "dependencies": {
     "@nuxt/content": "^1.11.1",
-    "@nuxtjs/axios": "^5.12.5",
+    "@nuxt/http": "^0.6.4",
     "@nuxtjs/pwa": "^3.3.5",
     "bootstrap": "^4.6.0",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
     "express": "4.17.1",
     "mongodb": "^3.6.4",
     "mongoose": "5.9.29",

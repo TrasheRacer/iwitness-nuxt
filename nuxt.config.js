@@ -31,8 +31,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
+    // https://http.nuxtjs.org/
+    '@nuxt/http',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
@@ -44,8 +44,8 @@ export default {
     // '/db': '~/database',
   },
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  // HTTP module configuration
+  http: {},
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {
@@ -59,4 +59,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // Access server from other devices in local network
+  server: {
+    host: '0.0.0.0',
+  },
 }

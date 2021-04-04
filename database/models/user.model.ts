@@ -3,7 +3,15 @@ import mongoose from 'mongoose'
 const USER_SCHEMA = new mongoose.Schema(
   {
     _id: String,
-    email: String,
+    created: { type: Date, default: Date.now },
+    contact: {
+      email: String,
+      phone: String, // may be null!
+    },
+    agreed: {
+      termsOfUse: Boolean,
+      newsletter: Boolean,
+    },
   },
   { collection: 'users' }
 )

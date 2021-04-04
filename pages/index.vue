@@ -8,38 +8,35 @@
           <h5>RESPONSE_DATA</h5>
           <b-list-group>
             <b-list-group-item v-for="(pong, index) in pongs" :key="index">
-              <strong>{{ index }}:</strong> {{ pong }}
+              <code>{{ index }}: {{ pong }}</code>
             </b-list-group-item>
           </b-list-group>
         </div>
       </b-col>
-      <b-col>
-        <NuxtLink to="/user">CREATE_ACCOUNT</NuxtLink>
-      </b-col>
       <b-col class="text-left">
         <h4>USERS_ENDPOINT</h4>
         <h5>RESPONSE_DATA</h5>
-        <div>
-          <pre>
-            <code>
-            { users:
-             { count: {{ users.length }}
-               users: [
-                {{ users[0]._id }}: {{ users[0].email }},
-                {{ users[1]._id }}: {{ users[1].email }},
-                ..
-                ]
-             }
-            }
-            </code>
-          </pre>
-        </div>
+        <b-list-group>
+          <b-list-group-item v-for="user in users" :key="user._id">
+            <code>{ id: {{ user._id }}, email: {{ user.contact.email }} }</code>
+          </b-list-group-item>
+        </b-list-group>
       </b-col>
     </b-row>
     <b-row class="text-center">
       <b-col>
         <Logo />
         <h1 id="title">IWITNESS_SERVER</h1>
+        <NuxtLink to="/user">CREATE_ACCOUNT</NuxtLink>
+        <br />
+      </b-col>
+    </b-row>
+
+    <b-row class="text-center">
+      <b-col>
+        <h2>TODO</h2>
+        <p>* centre content should float above ping & user responses</p>
+        <p>* fix styling on pages home & user by starting fresh/</p>
       </b-col>
     </b-row>
   </b-container>

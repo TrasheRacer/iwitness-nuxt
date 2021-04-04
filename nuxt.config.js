@@ -41,7 +41,6 @@ export default {
 
   serverMiddleware: {
     '/api': '~/api',
-    // '/db': '~/database',
   },
 
   // HTTP module configuration

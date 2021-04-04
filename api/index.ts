@@ -1,11 +1,14 @@
 import express from 'express'
 import cors from 'cors'
+import bodyParser from 'body-parser'
 import { connectDatabase, LOCAL_DATABASE } from '../database/index'
-import { GET_USER_BY_ID, GET_USERS } from './routes/users'
+import { CREATE_USER, READ_USER, READ_USERS } from './routes/users'
 import { getPong as GET_PONG_FROM_PING } from './routes/ping'
 
 const app = express()
 app.use(cors())
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
 const connection = connectDatabase(LOCAL_DATABASE)
 connection.on('error', (err) => {
@@ -13,8 +16,9 @@ connection.on('error', (err) => {
 })
 connection.once('open', () => {
   console.info(`connectDatabase(${LOCAL_DATABASE}): open`)
-  app.use(GET_USER_BY_ID)
-  app.use(GET_USERS)
+  app.use(READ_USER)
+  app.use(READ_USERS)
+  app.use(CREATE_USER)
   app.use(GET_PONG_FROM_PING)
 })
 

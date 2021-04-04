@@ -19,9 +19,6 @@
 | |------| models // contains directories in which the routes of the API are defined
 |
 |
-|------| docs // contains all documentation for the project as markdown files
-|
-|
 |------| pages // contains the views and routes of the application as '.vue' files used to create the router
 | |
 | |------| models // contains directories in which the routes of the API are defined

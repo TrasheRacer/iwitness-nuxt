@@ -4,16 +4,21 @@
       <b-col>
         <b-button variant="success" @click="pingServer">PING_API</b-button>
         <br />
-        <br />
-        <p>RESPONSE_DATA</p>
-        {{ pongs }}
+        <div>
+          <h5>RESPONSE_DATA</h5>
+          <b-list-group>
+            <b-list-group-item v-for="(pong, index) in pongs" :key="index">
+              <strong>{{ index }}:</strong> {{ pong }}
+            </b-list-group-item>
+          </b-list-group>
+        </div>
       </b-col>
       <b-col>
         <NuxtLink to="/user">CREATE_ACCOUNT</NuxtLink>
       </b-col>
       <b-col class="text-left">
-        <strong><p>USERS_ENDPOINT</p></strong>
-        <p>RESPONSE_DATA</p>
+        <h4>USERS_ENDPOINT</h4>
+        <h5>RESPONSE_DATA</h5>
         <div>
           <pre>
             <code>

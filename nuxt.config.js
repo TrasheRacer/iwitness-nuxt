@@ -40,7 +40,7 @@ export default {
   ],
 
   serverMiddleware: {
-    '/api': '~/endpoints',
+    '/api': '~/api',
     // '/db': '~/database',
   },
 

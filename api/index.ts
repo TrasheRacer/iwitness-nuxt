@@ -2,8 +2,8 @@ import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
 import { connectDatabase, LOCAL_DATABASE } from '../db/index'
-import { CREATE_USER, READ_USER, READ_USERS } from './routes/users'
-import { getPong as GET_PONG_FROM_PING } from './routes/ping'
+import { CREATE_USER, READ_USER, READ_USERS } from './routes/users.route'
+import { getPong as GET_PONG_FROM_PING } from './routes/ping.route'
 
 const app = express()
 app.use(cors())

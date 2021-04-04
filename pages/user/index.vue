@@ -12,13 +12,121 @@
         <h2>CREATE_ACCOUNT</h2>
       </b-col>
     </b-row>
+    <b-row>
+      <b-col>
+        <b-form v-if="show" @submit="onSubmit" @reset="onReset">
+          <b-form-group
+            label="EMAIL_ADDRESS"
+            label-for="input-email"
+            description="PRIVATE_(SECRET)"
+          >
+            <b-form-input
+              id="input-email"
+              v-model="form.email"
+              type="email"
+              placeholder="ENTER_VALID_EMAIL_ADDRESS"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            label="PHONE_NUMBER"
+            label-for="input-phone"
+            description="PRIVATE_(SECRET)"
+          >
+            <b-form-input
+              id="input-phone"
+              v-model="form.phone"
+              type="tel"
+              placeholder="ENTER_VALID_PHONE_NUMBER"
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-group
+            label="USER_ALIAS"
+            label-for="input-alias"
+            description="PUBLIC_(SHARED)"
+          >
+            <b-form-input
+              id="input-alias"
+              v-model="form.alias"
+              placeholder="ENTER_VALID_USER_ALIAS"
+              required
+            ></b-form-input>
+          </b-form-group>
+
+          <b-form-checkbox
+            v-model="form.agreedTOU"
+            name="agree-terms-of-use"
+            required
+          >
+            AGREE_TERMS_OF_USE
+          </b-form-checkbox>
+
+          <b-form-checkbox
+            v-model="form.agreedNewsletter"
+            name="agree-email-newsletter"
+          >
+            AGREE_EMAIL_NEWSLETTER_(NO_MORE_FREQUENT_THAN_ONCE_PER_WEEK)
+          </b-form-checkbox>
+
+          <br />
+          <b-button type="submit" variant="primary">FORM_SUBMIT</b-button>
+          <b-button type="reset" variant="danger">FORM_RESET</b-button>
+        </b-form>
+      </b-col>
+      <b-col>
+        <b-card class="mt-3" header="FORM_DATA">
+          <pre class="m-0">{{ form }}</pre>
+        </b-card>
+      </b-col>
+    </b-row>
   </b-container>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 
-export default Vue.extend({})
+const FORM_DEFAULT = {
+  email: '',
+  phone: '',
+  alias: '',
+  agreedTOU: false,
+  agreedNewsletter: false,
+}
+
+export default Vue.extend({
+  data() {
+    return {
+      form: FORM_DEFAULT,
+      show: true,
+    }
+  },
+  methods: {
+    onSubmit(event) {
+      console.debug(`onSubmit(${event})`)
+      event.preventDefault()
+      alert(JSON.stringify(this.form))
+    },
+    onReset(event) {
+      console.debug(`onReset(${event})`)
+      event.preventDefault()
+
+      // Reset our form values.
+      this.form.email = ''
+      this.form.phone = ''
+      this.form.alias = ''
+      this.form.agreedTOU = false
+      this.form.agreedNewsletter = false
+
+      // Trick to reset native browser form validation state.
+      this.show = false
+      this.$nextTick(() => {
+        this.show = true
+      })
+    },
+  },
+})
 </script>
 
 <style>

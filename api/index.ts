@@ -1,7 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import bodyParser from 'body-parser'
-import { connectDatabase, LOCAL_DATABASE } from '../database/index'
+import { connectDatabase, LOCAL_DATABASE } from '../db/index'
 import { CREATE_USER, READ_USER, READ_USERS } from './routes/users'
 import { getPong as GET_PONG_FROM_PING } from './routes/ping'
 

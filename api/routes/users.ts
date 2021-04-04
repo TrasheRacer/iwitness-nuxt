@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { USER_MODEL } from '../../database/models/user.model'
+import { USER_MODEL } from '../../db/models/user.model'
 import { FormModel } from '../../pages/user/FormModel'
 
 const router = Router()

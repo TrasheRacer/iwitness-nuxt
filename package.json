@@ -32,6 +32,7 @@
     "express": "4.17.1",
     "mongodb": "^3.6.4",
     "mongoose": "5.9.29",
+    "nodemailer": "^6.5.0",
     "nuxt": "^2.14.12"
   },
   "devDependencies": {
@@ -43,6 +44,7 @@
     "@nuxtjs/eslint-module": "^3.0.2",
     "@nuxtjs/stylelint-module": "^4.0.0",
     "@types/mongoose": "5.10.0",
+    "@types/nodemailer": "^6.4.1",
     "babel-eslint": "^10.1.0",
     "eslint": "^7.18.0",
     "eslint-config-prettier": "^7.2.0",

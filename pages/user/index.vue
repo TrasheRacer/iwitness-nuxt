@@ -87,12 +87,8 @@
     <b-row
       ><b-col>
         <h4>TODO</h4>
-        <pre>
-        implement validation to ensure ID is a slug:
-        must contain *only* lower-case letters and dashes;
-        for example 'trashe-racer'
-      </pre
-        >
+        <pre>suggest random slug as user ID</pre>
+        <pre>validate slug for lowercase letters and dashes only</pre>
       </b-col>
     </b-row>
   </b-container>

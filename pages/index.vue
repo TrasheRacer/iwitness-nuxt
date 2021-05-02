@@ -28,6 +28,7 @@
         <Logo />
         <h1 id="title">IWITNESS_SERVER</h1>
         <NuxtLink to="/user">CREATE_ACCOUNT</NuxtLink>
+        <NuxtLink to="/sos">TRIGGER_SOS</NuxtLink>
         <br />
       </b-col>
     </b-row>
